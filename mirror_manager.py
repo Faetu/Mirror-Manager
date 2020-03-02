@@ -1,3 +1,5 @@
+#!/sur/bin/env python3
+
 import argparse
 import requests as req
 import sys
