@@ -1,0 +1,258 @@
+[
+    {
+        "CC": "all",
+        "FN": "All"
+    },
+    {
+        "CC": "AU",
+        "FN": "Australia"
+    },
+    {
+        "CC": "AT",
+        "FN": "Austria"
+    },
+    {
+        "CC": "BD",
+        "FN": "Bangladesh"
+    },
+    {
+        "CC": "BY",
+        "FN": "Belarus"
+    },
+    {
+        "CC": "BE",
+        "FN": "Belgium"
+    },
+    {
+        "CC": "BA",
+        "FN": "Bosnia and Herzegovina"
+    },
+    {
+        "CC": "BR",
+        "FN": "Brazil"
+    },
+    {
+        "CC": "BG",
+        "FN": "Bulgaria"
+    },
+    {
+        "CC": "CA",
+        "FN": "Canada"
+    },
+    {
+        "CC": "CL",
+        "FN": "Chile"
+    },
+    {
+        "CC": "CN",
+        "FN": "China"
+    },
+    {
+        "CC": "CO",
+        "FN": "Colombia"
+    },
+    {
+        "CC": "HR",
+        "FN": "Croatia"
+    },
+    {
+        "CC": "CZ",
+        "FN": "Czechia"
+    },
+    {
+        "CC": "DK",
+        "FN": "Denmark"
+    },
+    {
+        "CC": "EC",
+        "FN": "Ecuador"
+    },
+    {
+        "CC": "FI",
+        "FN": "Finland"
+    },
+    {
+        "CC": "FR",
+        "FN": "France"
+    },
+    {
+        "CC": "GE",
+        "FN": "Georgia"
+    },
+    {
+        "CC": "DE",
+        "FN": "Germany"
+    },
+    {
+        "CC": "GR",
+        "FN": "Greece"
+    },
+    {
+        "CC": "HK",
+        "FN": "Hong Kong"
+    },
+    {
+        "CC": "HU",
+        "FN": "Hungary"
+    },
+    {
+        "CC": "IS",
+        "FN": "Iceland"
+    },
+    {
+        "CC": "IN",
+        "FN": "India"
+    },
+    {
+        "CC": "ID",
+        "FN": "Indonesia"
+    },
+    {
+        "CC": "IR",
+        "FN": "Iran"
+    },
+    {
+        "CC": "IE",
+        "FN": "Ireland"
+    },
+    {
+        "CC": "IL",
+        "FN": "Israel"
+    },
+    {
+        "CC": "IT",
+        "FN": "Italy"
+    },
+    {
+        "CC": "JP",
+        "FN": "Japan"
+    },
+    {
+        "CC": "KZ",
+        "FN": "Kazakhstan"
+    },
+    {
+        "CC": "KE",
+        "FN": "Kenya"
+    },
+    {
+        "CC": "LV",
+        "FN": "Latvia"
+    },
+    {
+        "CC": "LT",
+        "FN": "Lithuania"
+    },
+    {
+        "CC": "LU",
+        "FN": "Luxembourg"
+    },
+    {
+        "CC": "NL",
+        "FN": "Netherlands"
+    },
+    {
+        "CC": "NC",
+        "FN": "New Caledonia"
+    },
+    {
+        "CC": "NZ",
+        "FN": "New Zealand"
+    },
+    {
+        "CC": "MK",
+        "FN": "North Macedonia"
+    },
+    {
+        "CC": "NO",
+        "FN": "Norway"
+    },
+    {
+        "CC": "PY",
+        "FN": "Paraguay"
+    },
+    {
+        "CC": "PH",
+        "FN": "Philippines"
+    },
+    {
+        "CC": "PL",
+        "FN": "Poland"
+    },
+    {
+        "CC": "PT",
+        "FN": "Portugal"
+    },
+    {
+        "CC": "RO",
+        "FN": "Romania"
+    },
+    {
+        "CC": "RU",
+        "FN": "Russia"
+    },
+    {
+        "CC": "RS",
+        "FN": "Serbia"
+    },
+    {
+        "CC": "SG",
+        "FN": "Singapore"
+    },
+    {
+        "CC": "SK",
+        "FN": "Slovakia"
+    },
+    {
+        "CC": "SI",
+        "FN": "Slovenia"
+    },
+    {
+        "CC": "ZA",
+        "FN": "South Africa"
+    },
+    {
+        "CC": "KR",
+        "FN": "South Korea"
+    },
+    {
+        "CC": "ES",
+        "FN": "Spain"
+    },
+    {
+        "CC": "SE",
+        "FN": "Sweden"
+    },
+    {
+        "CC": "CH",
+        "FN": "Switzerland"
+    },
+    {
+        "CC": "TW",
+        "FN": "Taiwan"
+    },
+    {
+        "CC": "TH",
+        "FN": "Thailand"
+    },
+    {
+        "CC": "TR",
+        "FN": "Turkey"
+    },
+    {
+        "CC": "UA",
+        "FN": "Ukraine"
+    },
+    {
+        "CC": "GB",
+        "FN": "United Kingdom"
+    },
+    {
+        "CC": "US",
+        "FN": "United States"
+    },
+    {
+        "CC": "VN",
+        "FN": "Vietnam"
+    }
+]
