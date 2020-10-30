@@ -10,7 +10,7 @@ import json
 from os import path
 from shutil import copyfile
 
-__version__ = 1.4
+__version__ = "1.5.1"
 __prog_name__ = "mirman"
 AllCountries = []
 
@@ -22,7 +22,7 @@ Parser = argparse.ArgumentParser(
     ),
     formatter_class=argparse.ArgumentDefaultsHelpFormatter,
 )
-Parser.add_argument("-c", "--country", help="search for specified countrys", nargs="+")
+Parser.add_argument("-c", "--country", help="search for specified countries", nargs="+")
 Parser.add_argument(
     "-p",
     "--protocol",
@@ -47,14 +47,14 @@ Parser.add_argument(
 )
 Parser.add_argument(
     "-l",
-    "--list-of-available-countrys",
-    help="show a list of available countrys",
+    "--list-of-available-countries",
+    help="show a list of available countries",
     action="store_true",
 )
 Parser.add_argument(
     "-u",
     "--update",
-    help="update mirrorlist based on the existing countrys, protocols and ip version",
+    help="update mirrorlist based on the existing countries, protocols and ip version",
     action="store_true",
 )
 Parser.add_argument(
@@ -70,7 +70,7 @@ Args = Parser.parse_args()
 ip_version = getattr(Args, "ip_version")
 backup_old_mirrorlist = getattr(Args, "backup_old_mirrorlist")
 mirrorlist_file = getattr(Args, "mirrorlist_file")
-list_of_available_countrys = getattr(Args, "list_of_available_countrys")
+list_of_available_countries = getattr(Args, "list_of_available_countries")
 without_origin_check = getattr(Args, "without_origin_check")
 
 
@@ -128,10 +128,10 @@ def Query_yes_no(Question, Default="yes"):
             sys.stdout.write("Please respond with 'yes' or 'no' " "(or 'y' or 'n').\n")
 
 
-def GetListFromOrigin(Countrys, Protocols, Ip_version):
+def GetListFromOrigin(Countries, Protocols, Ip_version):
     CountryTag = ""
-    if type(Countrys) is list:
-        for c in Countrys:
+    if type(Countries) is list:
+        for c in Countries:
             c = c.replace("\n", "")
             if len(c) > 2 and not c == "All" and not c == "all":
                 for o in AllCountries:
@@ -140,7 +140,7 @@ def GetListFromOrigin(Countrys, Protocols, Ip_version):
             else:
                 CountryTag += "country={}&".format(c)
     else:
-        CountryTag = "country={}&".format(Countrys)
+        CountryTag = "country={}&".format(Countries)
 
     ProtocolTag = ""
     if type(Protocols) is list:
@@ -265,11 +265,11 @@ class ACountry:
 
 # program initial
 if __name__ == "__main__":
-    with open("Available_Countries.json", "r") as f:
+    with open("/usr/bin/Available_Countries.json", "r") as f:
         CDate = json.load(f)
         for c in CDate:
             AllCountries.append(ACountry(**c))
-    if Args.list_of_available_countrys:
+    if Args.list_of_available_countries:
         for c in AllCountries:
             print("Code: {}  for: {}".format(c.CC, c.FN))
         exit(0)
