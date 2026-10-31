@@ -176,9 +176,12 @@ def OriginCheck(ServerDomain, Origin):
     EndOfRegularURL = ServerDomain.find("/")
     if EndOfRegularURL > -1:
         ServerDomain = ServerDomain[:EndOfRegularURL]
-    HostIP = socket.gethostbyname(ServerDomain)
-    RequestOrigin = req.get("http://api.db-ip.com/v2/free/" + HostIP + "/countryName")
-    RealOrigin = RequestOrigin.text
+    try:
+        HostIP = socket.gethostbyname(ServerDomain)
+        RequestOrigin = req.get("http://api.db-ip.com/v2/free/" + HostIP + "/countryName")
+        RealOrigin = RequestOrigin.text
+    except socket.gaierror:
+        RealOrigin = "unknown"
     if RealOrigin == Origin:
         return "-1"
     else:
