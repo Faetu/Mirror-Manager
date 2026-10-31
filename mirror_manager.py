@@ -1,4 +1,4 @@
-#!/sur/bin/env python3
+#!/usr/bin/env python3
 
 import argparse
 import requests as req
@@ -9,19 +9,46 @@ from shutil import copyfile
 
 
 #Args parse
-Parser = argparse.ArgumentParser(prog='mirror_manager.py',description="""Get actual country-dependet mirrorlist for an arch linux system""")
-Parser.add_argument('-c', '--country', help="search for specified countrys", nargs='*')
-Parser.add_argument('-p', '--protocol', help='search for specified protocols', nargs='+', default=['http','https'])
-Parser.add_argument('-i', '--ip_version', help='choce between ipv4 or ipv6', default=4)
-Parser.add_argument('-b', '--backup_old_mirrorlist', help='make a backupfile of the old mirrorlist file', action='store_true')
-Parser.add_argument('-m', '--mirrorlist_file', help='path to the mirrorlist', default='/etc/pacman.d/mirrorlist')
-Parser.add_argument('-l', '--list_of_aviable_countrys', help='show a list of aviable countrys', action='store_true')
+Parser = argparse.ArgumentParser(prog='mirman',description="""Get actual country-dependet mirrorlist for an arch linux system""", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+Parser.add_argument('-c', '--country', help="search for specified countrys", nargs='+')
+Parser.add_argument('-p', '--protocol', help='search for specified protocols', nargs='+', default=['http','https'],)
+Parser.add_argument('-i', '--ip-version', help='choce between ipv4 or ipv6', default=4)
+Parser.add_argument('-b', '--backup-old-mirrorlist', help='make a backupfile of the old mirrorlist file', action='store_true')
+Parser.add_argument('-m', '--mirrorlist-file', help='path to the mirrorlist', default='/etc/pacman.d/mirrorlist')
+Parser.add_argument('-l', '--list-of-aviable-countrys', help='show a list of aviable countrys', action='store_true')
+Parser.add_argument('-u', '--update', help='update mirrorlist based on the existing countrys, protocols and ip version', action='store_true')
+Parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1')
 Args = Parser.parse_args()
+ip_version = getattr(Args, 'ip_version')
+backup_old_mirrorlist = getattr(Args, 'backup_old_mirrorlist')
+mirrorlist_file = getattr(Args, 'mirrorlist_file')
+list_of_aviable_countrys = getattr(Args, 'list_of_aviable_countrys')
 
-
+BLINK = "\033[5m"
 GREEN = "\033[0;32m"
 RESET = "\033[0;0m"
+HEADER = '\033[95m'
+OKBLUE = '\033[94m'
+OKGREEN = '\033[92m'
+WARNING = '{}\033[93m'.format(BLINK)
+FAIL = '\033[91m'
+ENDC = '\033[0m'
+BOLD = '\033[1m'
+POSITIV = "{}[+] ".format(OKGREEN)
+NEGATIV = "{}[!] ".format(FAIL)
 
+def Print_Warning(text):
+    print("{}{}{}".format(WARNING,text,RESET))
+
+def Print_Error(text):
+    print("{}{}{}".format(NEGATIV, text, RESET))
+
+def Print_Sucess(text):
+    print("{}{}".format(POSITIV, text))
+
+def RemoveLastLine():
+    sys.stdout.write("\033[F") #back to previous line
+    sys.stdout.write("\033[K") #clear line
 
 # got this from https://stackoverflow.com/questions/3041986/apt-command-line-interface-like-yes-no-input
 def Query_yes_no(Question, Default="yes"):
@@ -49,7 +76,6 @@ def Query_yes_no(Question, Default="yes"):
 
 
 def GetListFromOrigin(Countrys, Protocols, Ip_version):
-    Tmplink = 'https://www.archlinux.org/mirrorlist/?country=AU&country=BE&protocol=http&protocol=https&ip_version=4'
     CountryTag = ''
     if type(Countrys) is list:
         for c in Countrys:
@@ -80,7 +106,7 @@ def MakeBackup():
         BackNam = '{}.back{:03}'.format(Args.mirrorlist_file, i)
         if not (path.exists(BackNam)):
             copyfile(Args.mirrorlist_file, BackNam)
-            print('[+] made a backup of mirrorlist file: {}'.format(BackNam))
+            Print_Sucess('made a backup of mirrorlist file: {}'.format(BackNam))
             return True
 
 
@@ -162,26 +188,30 @@ VN Vietnam
         """
         print(Aviables)
         exit(0)
-    if not (Args.country):
-        Parser.error('No country requested, add at least one country!')
     if not CheckSudo():
-        UIn = Query_yes_no('You need super user privileges to write into the mirrorlist file, stop actions?')
-        if UIn:
+        UIn = Query_yes_no('{}You need super user privileges to write into the mirrorlist file, stop actions?{}'.format(WARNING, RESET))
+        if (UIn):
+            RemoveLastLine()
+            Print_Error('stop action because of user input!')
             exit(0)
-    Response = GetListFromOrigin(Args.country, Args.protocol, Args.ip_version)
-    print('found some server: \n\n')
-    for line in Response:
-        print(line)
-    UIn = Query_yes_no('\nWrite new mirrorlist to {}?'.format(Args.mirrorlist_file))
-    if(UIn):
-        if Args.backup_old_mirrorlist:
-            MakeBackup()
-        with open(Args.mirrorlist_file,'w') as f:
-            for line in Response:
-                f.write('{}\n'.format(line))
-            print('[+] write new mirrorlist to file {}'.format(Args.mirrorlist_file))
-        print('\n[+] all actions were succesfully!')
-        exit(0)
-    else:
-        print('[!] stop action because of user input!')
-        exit(0)
+    if(Args.country):
+        Response = GetListFromOrigin(Args.country, Args.protocol, Args.ip_version)
+        print('found some server: \n\n')
+        for line in Response:
+            if("#" in line):
+                print("{}{}{}".format(HEADER, line, RESET))
+            else:
+                print(line)
+        UIn = Query_yes_no('\nWrite new mirrorlist to {}?'.format(Args.mirrorlist_file))
+        if(UIn):
+            if Args.backup_old_mirrorlist:
+                MakeBackup()
+            with open(Args.mirrorlist_file,'w') as f:
+                for line in Response:
+                    f.write('{}\n'.format(line))
+                Print_Sucess('write new mirrorlist to file {}'.format(Args.mirrorlist_file))
+            Print_Sucess('all actions were succesfully!')
+            exit(0)
+        else:
+            Print_Error('stop action because of user input!')
+            exit(0)
