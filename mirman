@@ -340,6 +340,7 @@ if __name__ == "__main__":
             else:
                 print(line)
     if not Args.without_origin_check and len(SuspectOriginList) > 0:
+        ToDelete=[]
         for s in range(0, len(SuspectOriginList), 1):
             UIn = Query_yes_no(
                 "\nAllow domains from {} server?".format(
@@ -352,13 +353,15 @@ if __name__ == "__main__":
                         POSITIV, SuspectOriginList[s].ServerOrigin, RESET
                     )
                 )
-                SuspectOriginList.pop(s)
+                ToDelete.insert(0,s)
             else:
                 print(
                     "{}Not allowed origin: {}{}".format(
                         NEGATIV, SuspectOriginList[s].ServerOrigin, RESET
                     )
                 )
+        for d in ToDelete:
+            SuspectOriginList.pop(d)
     UIn = Query_yes_no("\nWrite new mirrorlist to {}?".format(Args.mirrorlist_file))
     if UIn:
         if Args.backup_old_mirrorlist:
