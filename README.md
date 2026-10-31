@@ -32,7 +32,7 @@ One simply example can be:
 this argument will told mirror_manager to only request for those three countrys: `CH` (switzerland) `DE` (germany) and `AT` (austria).
 
 `-p` `--protocol`
-this argument will told morror_manager witch protocol we wish to request.
+this argument will told mirror_manager witch protocol we wish to request.
 
  - http
  - https
