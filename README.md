@@ -2,6 +2,7 @@
 Python script to manage the mirrorlist of an arch linux machine
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![release](https://img.shields.io/github/v/release/Faetu/mirror-manager.svg?include_prereleases)](https://github.com/Faetu/Mirror-Manager/releases) ![requirements](https://img.shields.io/badge/requirements-up%20to%20date-green)
 
 
