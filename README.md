@@ -67,13 +67,13 @@ Some of the domains are for example from germany, but the server himself is loca
 Example output:
 
 > \## Germany
-> Server = http://mirror.23media.com/archlinux/$repo/os/$arch
-> Server = https://mirror.23media.com/archlinux/$repo/os/$arch
-> Server = https://appuals.com/archlinux/$repo/os/$arch `--> real origin: Canada`
-> Server = http://artfiles.org/archlinux.org/$repo/os/$arch
-> Server = http://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
-> Server = https://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
-> Server = https://ger.mirror.pkgbuild.com/$repo/os/$arch `--> real origin: unknown`
-> Server = https://mirror.pkgbuild.com/$repo/os/$arch
+ Server = http://mirror.23media.com/archlinux/$repo/os/$arch
+ Server = https://mirror.23media.com/archlinux/$repo/os/$arch
+ Server = https://appuals.com/archlinux/$repo/os/$arch `--> real origin: Canada`
+ Server = http://artfiles.org/archlinux.org/$repo/os/$arch
+ Server = http://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
+ Server = https://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
+ Server = https://ger.mirror.pkgbuild.com/$repo/os/$arch `--> real origin: unknown`
+ Server = https://mirror.pkgbuild.com/$repo/os/$arch
 
 The script will ask your premission to use urls with different origins.
