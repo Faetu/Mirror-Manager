@@ -1,45 +1,70 @@
-# Mirror-Manager
-Python script to manage the mirrorlist of a arch linux machine
+# Mirman
+Python script to manage the mirrorlist of an arch linux machine
+
 
 ## Installation
-Currently the installation must be done maunally
+Currently, the installation must be done manually
 ### Download
 First of all you need to download the script. Its only a single .py file.
 
+
     git clone https://github.com/Faetu/Mirror-Manager.git
 ### Install
-Now we need to make the script runable and runable from anywhere
-First make the script runabel:
+Now we need to make the script run able and run able from anywhere
+First make the script run able:
 
-    sudo chmod +x mirror_manager.py
+
+    sudo chmod +x mirman.py
 now we need to move the script to /bin
 
+
     mv ./mirror_manager.py /bin
-now the script is runable and callable from anywhere!
+Now the script is run able and callable from anywhere!
+
 
 ## How to use
-This script is made to manage the mirrorlist on a arch-linux machine.
-You can call 
+This script is made to manage the mirrorlist on an arch-linux machine.
+You can call: 
 
-    mirror_manager -h
 
-to show all the options.
+    mirman -h
+
+
+To show all the options.
 ### Example
-One simply example can be:
+One Example can be:
 
-    mirror_manager -c CH DE AT -p http -b
+
+    mirman -c CH DE AT -p http -b
 `-c` `--country`
-this argument will told mirror_manager to only request for those three countrys: `CH` (switzerland) `DE` (germany) and `AT` (austria).
+This argument will tell mirman to only request for those three countries: `CH` (Switzerland) `DE` (Germany) and `AT` (Austria).
+
 
 `-p` `--protocol`
-this argument will told mirror_manager witch protocol we wish to request.
+This argument will tell mirman witch protocol we wish to request.
+
 
  - http
  - https
 
-`-b` `--backup_old_mirrorlist`
-with this argument, we told mirror_manager to make a backupfile of the current mirrorlist file.
-If a mirrorlist.back001 exist, then mirror_manage create a mirrorlist.back002.
+
+`-b` `--backup-old-mirrorlist`
+With this argument, we told mirman to make a backup file of the current mirrorlist file.
+If a mirrorlist.back001 exist, then mirman create a mirrorlist.back002.(count till 999)
 This option is false by default.
 
 
+### Update functionality
+If you have done one time a request with this script, then your mirrorlist is filled with a list of server from some countries and also with the used options for IP version and protocol.
+At this moment you will be able to use the update function without trouble.
+
+
+    mirman -u
+
+
+This argument let mirman read your actual mirrorlist, it searches for country-tags and also for IP version and protocol. After analysis the script start his work automatically.
+
+
+## What's special on this script?
+Mirman has since the v1.4 the functionality to check all the domains for there server origin.
+Some of the domains are for example from germany, but the server himself is located in the united state. In the end, before mirman write to the mirrorlist file, he will ask if the user accept servers. For each country he will ask separated.
